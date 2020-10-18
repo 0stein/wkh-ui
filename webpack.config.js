@@ -4,11 +4,18 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
-  mode: "none",
+  mode: "development",
   entry: "./src/index.js",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
+  },
+  devServer: {
+    contentBase: __dirname + "/dist/",
+    inline: true,
+    hot: true,
+    host: "localhost",
+    port: 5500,
   },
   module: {
     rules: [

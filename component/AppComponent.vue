@@ -1,8 +1,18 @@
 <template>
-
+<div>
+    <bootstrap></bootstrap>
+</div>
 </template>
 <script>
-    export default {
-        
+import bootstrap from './bootstrap'
+
+export default {
+    data() {
+        return {
+        }
+    },
+    components:{
+        bootstrap: bootstrap
     }
+}
 </script>

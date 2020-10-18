@@ -2,6 +2,13 @@ import "./style.scss";
 import Vue from "vue";
 import AppComponent from "../component/AppComponent.vue";
 
+// new Vue({
+//   render: (h) => h(AppComponent),
+// }).$mount("#app");
+
 new Vue({
-  render: (h) => h(AppComponent),
-}).$mount("#app");
+  el: "#app",
+  components: {
+    "app-component": AppComponent,
+  },
+});
