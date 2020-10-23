@@ -1,18 +1,19 @@
 <template>
-<div>
-    <bootstrap></bootstrap>
-</div>
+    <div>
+        <MainPage />
+    </div>
 </template>
 <script>
-import bootstrap from './bootstrap'
-
-export default {
-    data() {
-        return {
+import MainPage from './MainPage'
+    export default {
+        data: function () {
+            return {
+            }
+        },
+        methods: {
+        },
+        components: {
+            MainPage
         }
-    },
-    components:{
-        bootstrap: bootstrap
     }
-}
 </script>
