@@ -13,26 +13,21 @@
 
 <script>
     export default {
-        data: function(){
+        data: function () {
             return {
                 alias: ""
             }
         },
         props: ['workDataProp'],
         methods: {
-            postWorkLogs: function(){
+            postWorkLogs: function () {
                 let alias_copy = this.alias
-                this.workDataProp.forEach(w => {
-                    w.user.alias = alias_copy
-                });
 
                 this.workDataProp.forEach(w => {
+                    w.user.alias = alias_copy
                     this.$http.post('http://localhost:8080/workout', w)
-                        .catch(error =>{
-                            console.log(error)
-                        })
-            
                 });
+                this.$emit('reset')
             }
         }
     }

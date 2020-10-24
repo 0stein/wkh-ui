@@ -5,7 +5,16 @@
             <label for="exercises">운동종목</label>
             <select v-model="exercise" class="form-control">
                 <optgroup label="가슴운동">
-                    <option value="c_BENCH_PRESS">벤치프레스</option>
+                    <option value="BENCH_PRESS">벤치프레스</option>
+                    <option value="CHEST_PRESS">체스트프레스</option>
+                </optgroup>
+                <optgroup label="등운동">
+                    <option value="DEAD_LIFT">데드리프트</option>
+                    <option value="BRABELL_ROW">바벨로우</option>
+                </optgroup>
+                <optgroup label="하체운동">
+                    <option value="SQUAT">스쿼트</option>
+                    <option value="LEG_PRESS">레그프레스</option>
                 </optgroup>
             </select>
         </div>
@@ -36,18 +45,16 @@
                     exercise: null,
                     weight: null,
                     reps: null,
-                    set: null,
+                    set: null
             }
         },
         methods: {
             sendMakeList: function () {
-                let data = {
-                    exercise: this.exercise,
-                    weight: this.weight,
-                    reps: this.reps,
-                    set: this.set
-                }
-                this.$emit('eventMakeList', data)
+                let data_copy = new Object()
+                Object.keys(this.$data).forEach(w => {
+                    data_copy[w] = this.$data[w]
+                });
+                this.$emit('eventMakeList', data_copy)
             }
         }
     }
