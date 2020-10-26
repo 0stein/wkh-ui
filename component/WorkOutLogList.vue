@@ -2,7 +2,8 @@
     <div class="card-body">
         <h4 class="card-title">오늘의 운동</h4>
         <div class="list-group">
-            <a href="#" v-for="(log, l) in logs" :key="l" class="list-group-item list-group-item-action">
+            <a href="#" :id="key" v-for="(log, l) in logForPrint" :key="l" @click="deleteLog"
+                class="list-group-item list-group-item-action">
                 {{ log }}
             </a>
         </div>
@@ -11,12 +12,23 @@
 
 <script>
     export default {
-        data: function (){
+        data: function () {
             return {
-                
+                logForPrint: []
             }
         },
-        props: ['logs']
+        props: ['logs'],
+        methods: {
+            deleteLog: function () {},
+            initLogs: function () {
+                this.logs.forEach(log => {
+                    this.logForPrint.push(`${log.workout} ${log.weight}kg ${log.reps}reps ${log.set}sets`)
+                });
+            }
+        },
+        updated() {
+            this.initLogs()
+        }
     }
 </script>
 

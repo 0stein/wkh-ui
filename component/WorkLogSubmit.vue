@@ -21,13 +21,11 @@
         props: ['workDataProp'],
         methods: {
             postWorkLogs: function () {
-                let alias_copy = this.alias
-
                 this.workDataProp.forEach(w => {
-                    w.user.alias = alias_copy
+                    w.user.alias = this.alias
                     this.$http.post('http://localhost:8080/workout', w)
                 });
-                this.$emit('reset')
+                this.$emit('update:alias',this.alias)
             }
         }
     }

@@ -10,7 +10,12 @@
         </div>
         <div class="row">
             <div class="col-md-6 card">
-                <WorkLogSubmit @reset="resetForm" :workDataProp="workDataList" />
+                <WorkLogSubmit @update:alias="a => alias = a" :workDataProp="workDataList" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 card">
+                <WorkChart :alias="alias"/>
             </div>
         </div>
     </div>
@@ -21,22 +26,29 @@
     import WorkOutLogList from './WorkOutLogList.vue'
     import WorkOutLog from './WorkOutLog.vue'
     import WorkLogSubmit from './WorkLogSubmit.vue'
+    import WorkChart from './WorkChart.vue'
 
     export default {
         data: function () {
             return {
                 worklogs: [],
-                workDataList: []
+                workDataList: [],
+                alias: ''
             }
         },
         components: {
             WorkOutLogList,
             WorkOutLog,
-            WorkLogSubmit
+            WorkLogSubmit,
+            WorkChart
         },
         methods: {
             makeList: function (workdata) {
-                let workdata_c = new Object({
+                let worklog = {}
+                worklog = workdata
+                this.worklogs.push(worklog)
+                
+                const workdata_c = new Object({
                     workoutId: null,
                     user: {
                         userId: null,
@@ -49,19 +61,10 @@
                     set: null,
                     volume: null
                 })
-                workdata_c.workout = workdata.exercise
-                workdata_c.weight = workdata.weight
-                workdata_c.reps = workdata.reps
-                workdata_c.set = workdata.set
-
+                Object.keys(workdata).forEach(w => {
+                    workdata_c[w] = workdata[w];
+                });
                 this.workDataList.push(workdata_c)
-
-                this.worklogs.push(
-                    `${workdata.exercise} ${workdata.weight}kg ${workdata.reps}reps ${workdata.set}sets`)
-            },
-            resetForm: function(){
-                
-                Object.assign(this.$data, this.$options.data());
             }
         }
     }
