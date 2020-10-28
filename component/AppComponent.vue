@@ -1,10 +1,8 @@
 <template>
-    <div>
-        <MainPage />
-    </div>
+    <main-layout></main-layout>
 </template>
 <script>
-import MainPage from './MainPage'
+import MainLayout from './layouts/MainLayout'
     export default {
         data: function () {
             return {
@@ -13,7 +11,7 @@ import MainPage from './MainPage'
         methods: {
         },
         components: {
-            MainPage
+            MainLayout
         }
     }
 </script>
